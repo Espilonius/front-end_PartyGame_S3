@@ -1,10 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, } from "react";
+//import { useContext, useEffect } from "react";
 import { CreateGame } from "../services/GameService";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 
 const CreateGameComponent = () => {
-    const [players, setPlayers] = useState([])
+    const [players] = useState([])
     const [valuettlRounds, setValueTtlRounds] = useState('');
 
     const handleChange = event => {

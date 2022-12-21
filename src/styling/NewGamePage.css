@@ -1,0 +1,10 @@
+.table-container {
+    max-width: 400px;
+    margin: auto;   
+    display: grid;
+    grid-template-columns: 70% 30%;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    align-content: space-between;
+}

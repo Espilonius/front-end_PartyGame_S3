@@ -20,6 +20,6 @@ COPY . .
 RUN npm run build
 
 # Expose the port on which the app will be running (3000 is the default that `serve` uses)
-EXPOSE 8081
+EXPOSE 8080
 
 CMD [ "http-server", "dist" ]

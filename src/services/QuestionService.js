@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export async function getAllGames(){
+export async function getAllQuestions(){
     try {
-        console.log("service getAllGames");
+        console.log("service GetAllQuestions");
         const response = await axios.get(
-            "https://localhost:7057/api/Games");
+            "https://localhost:7120/api/Questions");
         console.log("response", response);
         return response.data;
     } catch (error) {
@@ -12,10 +12,10 @@ export async function getAllGames(){
     }
 }
 
-export async function getGameByUserId(id){
+export async function getQuestionsById(id){
     try {
         const response = await axios.get(
-            `https://localhost:7057/api/Games/${id}`
+            `https://localhost:7120/api/Questions/${id}`
         );
         console.log(response.data);
         return response.data;
@@ -24,10 +24,10 @@ export async function getGameByUserId(id){
     }
 }
 
-export async function CreateGame(data){
+export async function CreateQuestions(data){
     try {
         console.log(data);
-        const response = axios.post('https://localhost:7057/api/Games', data)
+        const response = axios.post('https://localhost:7120/api/Questions', data)
         .catch(function (error) {
             if (error.response) {
                 // Request made and server responded
@@ -48,10 +48,10 @@ export async function CreateGame(data){
     }
 }
 
-export async function UpdateGame(id, data){
+export async function UpdateQuestions(id, data){
     try {
         const response = await axios.put(
-            `https://localhost:7057/api/games/${id}`, data
+            `https://localhost:7120/api/Questions/${id}`, data
         );
         console.log(response.data)
     } catch (error) {
@@ -59,10 +59,10 @@ export async function UpdateGame(id, data){
     }
 }
 
-export async function DeleteGame(id){
+export async function DeleteQuestions(id){
     try {
         const response = await axios.delete(
-            `https://localhost:7057/api/Games/${id}`
+            `https://localhost:7120/api/Questions/${id}`
         );
         console.log(response.data)
     } catch (error) {

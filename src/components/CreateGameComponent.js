@@ -3,6 +3,8 @@ import React, { useState, } from "react";
 import { CreateGame } from "../services/GameService";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateGameComponent = () => {
     const [players] = useState([])
@@ -27,8 +29,19 @@ const CreateGameComponent = () => {
             return;
         }
         console.log("after check numbers");
-        if (totalRounds > 100 || totalRounds < 0) {
-            console.log("number not between 0 and 100");
+        if (totalRounds > 10 || totalRounds < 0) {
+            console.log("number not between 0 and 10");
+            if (totalRounds > 10){
+                ChangeMessage(1);
+            }
+            if (totalRounds < 0){
+                ChangeMessage(0);
+            }
+            return;
+        }
+        if (players.length <= 1){
+            console.log("Players can't be null")
+            ChangeMessage(2);
             return;
         }
         
@@ -44,6 +57,7 @@ const CreateGameComponent = () => {
                     console.log(response);
                     if (response.id !== null) {
                         console.log("Succesfully created a game")
+                        toasrMessage("Succes", "Succesfully created a game.")
                       } else {
                         console.log("Failed to create a game")
                       }
@@ -66,6 +80,51 @@ const CreateGameComponent = () => {
         document.getElementById('playerList').innerHTML += '<tr><td>' + newPlayer + '</td></tr>';
         console.log("New player name: ", newPlayer);
     }
+
+    function ChangeMessage(typeMessage){
+        switch(typeMessage) {
+            case 0:          
+            toasrMessage("error","Rounds can't be negative.")
+              break;
+            case 1:          
+            toasrMessage("error","Rounds can't be over 10.")
+              break;
+            case 2:            
+              toasrMessage("error","Players can't be less then 2.")
+              break;
+            case 3:            
+                toasrMessage("Succes","Succesfully created a game.")
+              break;
+            default:
+              console.log("There isn't a switch case for this", typeMessage)
+          } 
+      }
+
+    function toasrMessage(type, message) {
+        if (type === "error") {
+          toast.error(message, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored"
+          })
+        } else {
+          toast.success(message, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored"
+          })
+        }
+      }
     
     return (
         <>
